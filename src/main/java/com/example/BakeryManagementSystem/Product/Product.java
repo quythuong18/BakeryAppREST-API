@@ -21,7 +21,7 @@ public class Product {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "fk_category_id")
     private Category category;
 
@@ -35,12 +35,12 @@ public class Product {
     private int quantity;
 
     @Column(name = "img_path")
-    private int imgPath;
+    private String imgPath;
 
     public Product() {
     }
 
-    public Product(int id, String name, Category category, String description, double price, int quantity, int imgPath) {
+    public Product(int id, String name, Category category, String description, double price, int quantity, String imgPath) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -98,11 +98,11 @@ public class Product {
         this.category = category;
     }
 
-    public int getImgPath() {
+    public String getImgPath() {
         return imgPath;
     }
 
-    public void setImgPath(int imgPath) {
+    public void setImgPath(String imgPath) {
         this.imgPath = imgPath;
     }
 
