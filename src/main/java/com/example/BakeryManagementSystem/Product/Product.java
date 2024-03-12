@@ -1,5 +1,6 @@
 package com.example.BakeryManagementSystem.Product;
 
+import com.example.BakeryManagementSystem.Category.Category;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,20 +17,37 @@ public class Product {
             generator = "product_sequence"
     )
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_category_id")
+    private Category category;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "price")
     private double price;
+
+    @Column(name = "quantity")
     private int quantity;
+
+    @Column(name = "img_path")
+    private int imgPath;
 
     public Product() {
     }
 
-    public Product(int id, String name, String description, double price, int quantity) {
+    public Product(int id, String name, Category category, String description, double price, int quantity, int imgPath) {
         this.id = id;
         this.name = name;
+        this.category = category;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
+        this.imgPath = imgPath;
     }
 
     public int getId() {
@@ -70,6 +88,22 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public int getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(int imgPath) {
+        this.imgPath = imgPath;
     }
 
     @Override
