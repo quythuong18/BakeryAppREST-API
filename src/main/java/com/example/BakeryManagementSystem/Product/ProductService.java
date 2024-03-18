@@ -1,6 +1,7 @@
 package com.example.BakeryManagementSystem.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,23 +39,16 @@ public class ProductService {
     }
 
     @Transactional
-    public void updateProduct(int id, String name, String desc, Double price, Integer quantity) {
+    public ResponseEntity<Product> updateProduct(int id, Product updateProduct) {
         Product product = productRepository.findById(id).orElseThrow(() -> new IllegalStateException("Product with id " + id + "does not exist"));
-        if (name != null && !name.isEmpty()) {
-            Optional<Product> productOptional = productRepository.findProductByName(name);
-            if (productOptional.isPresent()) {
-                throw new IllegalStateException("The product name exists");
-            }
-            product.setName(name);
-        }
-        if (desc != null && !desc.isEmpty()) {
-            product.setDesc(desc);
-        }
-        if (price != null) {
-            product.setPrice(price);
-        }
-        if (quantity != null) {
-            product.setQuantity(quantity);
-        }
+
+        product.setName(updateProduct.getName() != null ? updateProduct.getName() : product.getName());
+        product.setCategory(updateProduct.getCategory() != null ? updateProduct.getCategory() : product.getCategory());
+        product.setDesc(updateProduct.getDesc() != null ? updateProduct.getDesc() : product.getDesc());
+        product.setPrice(updateProduct.getPrice() != null ? updateProduct.getPrice() : product.getPrice());
+        product.setQuantity(updateProduct.getQuantity() != null ? updateProduct.getQuantity() : product.getQuantity());
+
+        productRepository.save(product);
+        return ResponseEntity.ok(product);
     }
 }

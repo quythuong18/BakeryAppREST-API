@@ -28,10 +28,7 @@ public class ProductController {
     }
     @PatchMapping(path = "{productId}")
     public void updateProduct(@PathVariable("productId") int id,
-                              @RequestParam(required = false) String name,
-                              @RequestParam(required = false) String desc,
-                              @RequestParam(required = false) Double price,
-                              @RequestParam(required = false) Integer quantity) {
-        productService.updateProduct(id, name, desc, price, quantity);
+                              @RequestBody Product updateProduct) {
+        productService.updateProduct(id, updateProduct);
     }
 }

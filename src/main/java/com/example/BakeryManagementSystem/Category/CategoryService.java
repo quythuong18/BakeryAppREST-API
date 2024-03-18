@@ -2,6 +2,7 @@ package com.example.BakeryManagementSystem.Category;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,5 +16,25 @@ public class CategoryService {
 
     public List<Category> getCategories() {
         return categoryRepository.findAll();
+    }
+
+    public void addCategory(Category category) {
+        categoryRepository.save(category);
+    }
+
+    public void deleteCategory(int Id) {
+        boolean exists = categoryRepository.existsById(Id);
+        if(!exists) {
+            throw new IllegalStateException("The category with" + Id + " id does not exist");
+        }
+        categoryRepository.deleteById(Id);
+    }
+
+    @Transactional
+    public void updateCategory(int id, Category updateCategory) {
+        Category category = categoryRepository.findById(id).orElseThrow(() -> new IllegalStateException("Category with id " + id + "does not exist"));
+        category.setName(updateCategory.getName() != null ? updateCategory.getName() : category.getName());
+        category.setImgPath(updateCategory.getImgPath() != null ? updateCategory.getImgPath() : category.getImgPath());
+        categoryRepository.save(category);
     }
 }

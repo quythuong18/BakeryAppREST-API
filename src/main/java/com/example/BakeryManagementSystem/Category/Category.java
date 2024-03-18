@@ -18,7 +18,7 @@ public class Category {
             strategy = GenerationType.SEQUENCE,
             generator = "category_sequence"
     )
-    private int id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -38,7 +38,7 @@ public class Category {
         this.imgPath = imgPath;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

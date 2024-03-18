@@ -2,9 +2,7 @@ package com.example.BakeryManagementSystem.Category;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +18,20 @@ public class CategoryController {
     @GetMapping
     public List<Category> getCategories() {
         return categoryService.getCategories();
+    }
+
+    @PostMapping
+    public void addCategory(@RequestBody Category category) {
+        categoryService.addCategory(category);
+    }
+    @DeleteMapping(path = "{categoryId}")
+    public void deleteCategory(@PathVariable("categoryId") int Id) {
+        categoryService.deleteCategory(Id);
+    }
+
+    @PutMapping(path = "{categoryId}")
+    public void updateCategory(@PathVariable("categoryId") int Id,
+                                @RequestBody Category updateCategory) {
+        categoryService.updateCategory(Id, updateCategory);
     }
 }
