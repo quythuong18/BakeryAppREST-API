@@ -1,6 +1,7 @@
 package com.example.BakeryManagementSystem.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,9 +15,15 @@ public class ProductController {
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
+
     @GetMapping
     public List<Product> getProducts(){
         return productService.getProducts();
+    }
+
+    @GetMapping(path = {"{productId}"})
+    public Product getProductById(@PathVariable("productId") int id) {
+        return productService.getProductById(id);
     }
     @PostMapping
     public void addProduct(@RequestBody Product product){

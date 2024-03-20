@@ -30,7 +30,7 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public void deleteProduct(int id) {
+    public void deleteProduct(Integer id) {
         boolean exists = productRepository.existsById(id);
         if(!exists) {
             throw new IllegalStateException("The product with" + id + " id does not exist");
@@ -50,5 +50,10 @@ public class ProductService {
 
         productRepository.save(product);
         return ResponseEntity.ok(product);
+    }
+
+    public Product getProductById(Integer id) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new IllegalStateException("Product with id " + id + "does not exist"));
+        return product;
     }
 }
