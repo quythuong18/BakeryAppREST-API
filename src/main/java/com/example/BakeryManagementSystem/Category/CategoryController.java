@@ -1,7 +1,9 @@
 package com.example.BakeryManagementSystem.Category;
 
 import com.example.BakeryManagementSystem.Product.Product;
+import org.antlr.v4.runtime.misc.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,11 @@ public class CategoryController {
     @GetMapping
     public List<Category> getCategories() {
         return categoryService.getCategories();
+    }
+
+    @GetMapping(path = {"{categoryId}"})
+    public Category getACategory(@PathVariable("categoryId") Integer id) {
+        return categoryService.getACategory(id);
     }
 
     @GetMapping(path = {"{categoryId}/products"})

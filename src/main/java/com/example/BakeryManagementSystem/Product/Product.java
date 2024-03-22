@@ -1,7 +1,9 @@
 package com.example.BakeryManagementSystem.Product;
 
 import com.example.BakeryManagementSystem.Category.Category;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -24,7 +26,6 @@ public class Product {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_category_id")
-    @JsonIgnore
     private Category category;
 
     @Column(name = "description")

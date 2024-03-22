@@ -1,6 +1,8 @@
 package com.example.BakeryManagementSystem.Category;
 
 import com.example.BakeryManagementSystem.Product.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -26,6 +28,7 @@ public class Category {
     @Column(name = "img_path")
     private String imgPath;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<Product> productList;
 
