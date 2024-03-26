@@ -41,6 +41,7 @@ public class AuthenticationService {
         return new AuthenticationResponse(token);
     }
 
+    // this for login request
     public AuthenticationResponse authenticate(AppUser request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
