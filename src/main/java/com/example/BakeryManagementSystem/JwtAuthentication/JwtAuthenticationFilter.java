@@ -1,14 +1,13 @@
-package com.example.BakeryManagementSystem.filter;
+package com.example.BakeryManagementSystem.JwtAuthentication;
 
 import com.example.BakeryManagementSystem.AppUser.UserDetailImp;
-import com.example.BakeryManagementSystem.Auth.JwtService;
+import com.example.BakeryManagementSystem.JwtAuthentication.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
-import org.springframework.security.authentication.AuthenticationDetailsSource;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,18 +1,18 @@
-package com.example.BakeryManagementSystem.Auth;
+package com.example.BakeryManagementSystem.JwtAuthentication;
 
 import com.example.BakeryManagementSystem.AppUser.AppUser;
-import com.example.BakeryManagementSystem.AppUser.AppUserRepository;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.function.Function;
 
+@Component
 public class JwtService {
     private final String SECRET_KEY = "5a300b56b760542ab15acd225fe8dabe88abeb678dfa3d4c9691d0983fde83f7";
 
