@@ -11,10 +11,10 @@ public class UserDetailImp implements UserDetailsService {
 
     private final AppUserRepository userRepository;
 
-    @Autowired
     public UserDetailImp(AppUserRepository appUserRepository) {
         this.userRepository = appUserRepository;
     }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
