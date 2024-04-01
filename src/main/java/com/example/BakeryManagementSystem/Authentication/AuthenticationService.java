@@ -3,13 +3,12 @@ package com.example.BakeryManagementSystem.Authentication;
 import com.example.BakeryManagementSystem.AppUser.AppUser;
 import com.example.BakeryManagementSystem.AppUser.AppUserRepository;
 import com.example.BakeryManagementSystem.JwtAuthentication.JwtService;
-import org.hibernate.boot.model.naming.IllegalIdentifierException;
+import com.example.BakeryManagementSystem.utils.Role;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class AuthenticationService {
@@ -25,28 +24,35 @@ public class AuthenticationService {
         this.authenticationManager = authenticationManager;
     }
 
-    public AuthenticationResponse register(AppUser request) {
+    public AuthenticationResponse registerAsACustomer(AppUser request) {
         AppUser user = new AppUser();
         user.setFullName(request.getFullName());
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-
-        user.setRole(user.getRole());
+        user.setRole(request.getRole());
+        user.setPhone(request.getPhone());
+        if(!request.getEmail().isEmpty()) { // email is optional
+            user.setEmail(request.getEmail());
+        }
+        user.setRole(Role.ROLE_CUSTOMER);
 
         // save new user to DB
         user = appUserRepository.save(user);
 
         // generate JWT token for that account
+        System.out.println("generate JWT token for that account");
         String token = jwtService.generateToken(user);
         return new AuthenticationResponse(token);
     }
 
     // this for login request
     public AuthenticationResponse authenticate(AppUser request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
-        );
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
+        authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+
         AppUser user = appUserRepository.findByUsername(request.getUsername()).orElseThrow();
+
+        System.out.println(user.toString());
         String token = jwtService.generateToken(user);
         return new AuthenticationResponse(token);
     }

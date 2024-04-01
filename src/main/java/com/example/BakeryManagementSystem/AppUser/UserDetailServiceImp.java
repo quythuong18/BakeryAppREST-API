@@ -1,17 +1,16 @@
 package com.example.BakeryManagementSystem.AppUser;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserDetailImp implements UserDetailsService {
+public class UserDetailServiceImp implements UserDetailsService {
 
     private final AppUserRepository userRepository;
 
-    public UserDetailImp(AppUserRepository appUserRepository) {
+    public UserDetailServiceImp(AppUserRepository appUserRepository) {
         this.userRepository = appUserRepository;
     }
 
