@@ -1,4 +1,4 @@
-package com.example.BakeryManagementSystem.Order;
+package com.example.BakeryManagementSystem.PurchaseOrder;
 
 import com.example.BakeryManagementSystem.AppUser.AppUser;
 import jakarta.persistence.*;
