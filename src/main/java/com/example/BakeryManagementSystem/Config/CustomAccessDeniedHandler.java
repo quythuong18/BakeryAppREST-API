@@ -1,4 +1,4 @@
-package com.example.BakeryManagementSystem.config;
+package com.example.BakeryManagementSystem.Config;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

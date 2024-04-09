@@ -1,19 +1,26 @@
 package com.example.BakeryManagementSystem.SaleOrder;
 
 import com.example.BakeryManagementSystem.Product.Product;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
 
 
 @Entity
 @Table
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="id")
-public class OrderDetails {
+public class OrderItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(
+            name = "order_item_sequence",
+            sequenceName = "order_item_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "order_item_sequence"
+    )
     private Long Id;
 
     @ManyToOne()

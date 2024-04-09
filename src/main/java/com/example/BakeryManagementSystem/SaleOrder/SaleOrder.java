@@ -1,13 +1,16 @@
-package com.example.BakeryManagementSystem.PurchaseOrder;
+package com.example.BakeryManagementSystem.SaleOrder;
 
 import com.example.BakeryManagementSystem.AppUser.AppUser;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 @Table
-public class PurchaseOrder {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class SaleOrder {
     @Id
     @SequenceGenerator(
             name = "order_sequence",
@@ -20,18 +23,19 @@ public class PurchaseOrder {
     )
     private Long id;
 
-    @OneToOne()
+    @ManyToOne()
     @JoinColumn(name = "fk_customer_id")
     private AppUser customer;
 
-    @OneToOne()
+    @ManyToOne()
     @JoinColumn(name = "fk_employee_id")
     private AppUser employee;
 
     private String shipAddress;
+    private Double total;
 
-    @OneToMany(mappedBy = "purchaseOrder")
-    private List<OrderDetails> OrderDetailsList;
+    @OneToMany(mappedBy = "saleOrder", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<OrderItem> orderItemList;
 
     public Long getId() {
         return id;
@@ -65,11 +69,30 @@ public class PurchaseOrder {
         this.shipAddress = shipAddress;
     }
 
-    public List<OrderDetails> getOrderDetailsList() {
-        return OrderDetailsList;
+    public Double getTotal() {
+        return total;
     }
 
-    public void setOrderDetailsList(List<OrderDetails> orderDetailsList) {
-        OrderDetailsList = orderDetailsList;
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
+    }
+
+    public void setOrderDetailsList(List<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
+    }
+
+    @Override
+    public String toString() {
+        return "SaleOrder{" +
+                "id=" + id +
+                ", customer=" + customer +
+                ", employee=" + employee +
+                ", shipAddress='" + shipAddress + '\'' +
+                ", OrderDetailsList=" + orderItemList +
+                '}';
     }
 }
