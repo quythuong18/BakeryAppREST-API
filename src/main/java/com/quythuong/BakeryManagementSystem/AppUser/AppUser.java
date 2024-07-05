@@ -1,5 +1,6 @@
 package com.quythuong.BakeryManagementSystem.AppUser;
 
+import com.quythuong.BakeryManagementSystem.Cart.Cart;
 import com.quythuong.BakeryManagementSystem.utils.Role;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,7 +11,6 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table
 public class AppUser implements UserDetails {
     @Id
     @SequenceGenerator(
@@ -38,6 +38,9 @@ public class AppUser implements UserDetails {
 
     @Column(name = "email")
     private String email;
+
+    @OneToOne(mappedBy = "appUser") // the name in mappedBy is the name of Object that we declared in the Cart class
+    private Cart cart;
 
     @Enumerated(value = EnumType.STRING)
     private Role role;
