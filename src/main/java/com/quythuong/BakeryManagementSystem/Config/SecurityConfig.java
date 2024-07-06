@@ -37,7 +37,11 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-                        req->req.requestMatchers("/auth/**").permitAll()
+                        req->req.requestMatchers(
+                                "/auth/**",
+                                "/api-docs",
+                                "/swagger-ui/**"
+                                ).permitAll()
                                 .requestMatchers("**/orders/**").hasAuthority("ROLE_CUSTOMER")
                                 .requestMatchers("**/orders/**").hasAuthority("ROLE_CASHIER")
                                 .requestMatchers("**/orders/**").hasAuthority("ROLE_ADMIN")
