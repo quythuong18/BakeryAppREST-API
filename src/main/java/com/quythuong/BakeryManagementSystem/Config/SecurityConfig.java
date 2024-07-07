@@ -23,7 +23,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
     private final UserDetailServiceImp userDetailImp;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private  final CustomAccessDeniedHandler customAccessDeniedHandler;
+    private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
     public SecurityConfig(UserDetailServiceImp userDetailImp, JwtAuthenticationFilter jwtAuthenticationFilter, CustomAccessDeniedHandler customAccessDeniedHandler) {
         this.userDetailImp = userDetailImp;

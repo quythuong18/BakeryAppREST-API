@@ -4,12 +4,20 @@ import com.quythuong.BakeryManagementSystem.AppUser.AppUser;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
 @Table
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class SaleOrder {
     @Id
     @SequenceGenerator(
@@ -36,63 +44,4 @@ public class SaleOrder {
 
     @OneToMany(mappedBy = "saleOrder", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<OrderItem> orderItemList;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public AppUser getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(AppUser customer) {
-        this.customer = customer;
-    }
-
-    public AppUser getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(AppUser employee) {
-        this.employee = employee;
-    }
-
-    public String getShipAddress() {
-        return shipAddress;
-    }
-
-    public void setShipAddress(String shipAddress) {
-        this.shipAddress = shipAddress;
-    }
-
-    public Double getTotal() {
-        return total;
-    }
-
-    public void setTotal(Double total) {
-        this.total = total;
-    }
-
-    public List<OrderItem> getOrderItemList() {
-        return orderItemList;
-    }
-
-    public void setOrderDetailsList(List<OrderItem> orderItemList) {
-        this.orderItemList = orderItemList;
-    }
-
-    @Override
-    public String toString() {
-        return "SaleOrder{" +
-                "id=" + id +
-                ", customer=" + customer +
-                ", employee=" + employee +
-                ", shipAddress='" + shipAddress + '\'' +
-                ", OrderDetailsList=" + orderItemList +
-                '}';
-    }
 }
