@@ -4,11 +4,19 @@ import com.quythuong.BakeryManagementSystem.Product.Product;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Entity
 @Table
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="id")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderItem {
     @Id
     @SequenceGenerator(
@@ -32,27 +40,4 @@ public class OrderItem {
 
     private Integer amount;
 
-    public SaleOrder getSaleOrder() {
-        return saleOrder;
-    }
-
-    public void setSaleOrder(SaleOrder saleOrder) {
-        this.saleOrder = saleOrder;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Integer getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Integer amount) {
-        this.amount = amount;
-    }
 }

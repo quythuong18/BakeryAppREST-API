@@ -44,7 +44,7 @@ public class ProductService {
 
         product.setName(updateProduct.getName() != null ? updateProduct.getName() : product.getName());
         product.setCategory(updateProduct.getCategory() != null ? updateProduct.getCategory() : product.getCategory());
-        product.setDesc(updateProduct.getDesc() != null ? updateProduct.getDesc() : product.getDesc());
+        product.setDescription(updateProduct.getDescription() != null ? updateProduct.getDescription() : product.getDescription());
         product.setPrice(updateProduct.getPrice() != null ? updateProduct.getPrice() : product.getPrice());
         product.setQuantity(updateProduct.getQuantity() != null ? updateProduct.getQuantity() : product.getQuantity());
 
