@@ -11,8 +11,10 @@ public class CartController {
         this.cartService = cartService;
     }
 
-    @PostMapping
-    public Cart addCart(@RequestBody Cart cart) {
-        return cartService.addCart(cart);
+    @PatchMapping(path = "{cartId}")
+    public void updateCart(@PathVariable("cartId") Integer cartId,
+                            @RequestBody Cart updatedCart) {
+        cartService.updateCart(cartId, updatedCart);
     }
+
 }

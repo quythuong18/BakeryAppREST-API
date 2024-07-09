@@ -20,4 +20,8 @@ public class AppUserService {
         }
         return null;
     }
+
+    public AppUser getUserById(Integer appUserId) {
+        return appUserRepository.findById(appUserId).orElseThrow(() -> new IllegalStateException("app user with " + appUserId + " does not exist"));
+    }
 }

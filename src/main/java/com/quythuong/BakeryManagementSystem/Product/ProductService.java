@@ -39,7 +39,7 @@ public class ProductService {
     }
 
     @Transactional
-    public ResponseEntity<Product> updateProduct(int id, Product updateProduct) {
+    public void updateProduct(int id, Product updateProduct) {
         Product product = productRepository.findById(id).orElseThrow(() -> new IllegalStateException("Product with id " + id + "does not exist"));
 
         product.setName(updateProduct.getName() != null ? updateProduct.getName() : product.getName());
@@ -49,11 +49,10 @@ public class ProductService {
         product.setQuantity(updateProduct.getQuantity() != null ? updateProduct.getQuantity() : product.getQuantity());
 
         productRepository.save(product);
-        return ResponseEntity.ok(product);
+//        return ResponseEntity.ok(product);
     }
 
     public Product getProductById(Integer id) {
-        Product product = productRepository.findById(id).orElseThrow(() -> new IllegalStateException("Product with id " + id + "does not exist"));
-        return product;
+        return productRepository.findById(id).orElseThrow(() -> new IllegalStateException("Product with id " + id + "does not exist"));
     }
 }

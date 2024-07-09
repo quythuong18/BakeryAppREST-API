@@ -9,8 +9,11 @@ public class CartService {
         this.cartRepository = cartRepository;
     }
 
-    public Cart addCart(Cart cart) {
+    public void updateCart(Integer cartId, Cart updatedCart) {
+        Cart cart = cartRepository.findById(cartId).orElseThrow(() -> new IllegalStateException("Cart with id " + cartId + "does not exist"));
+
+        cart.setCartItemList(updatedCart.getCartItemList());
+
         cartRepository.save(cart);
-        return cart;
     }
 }

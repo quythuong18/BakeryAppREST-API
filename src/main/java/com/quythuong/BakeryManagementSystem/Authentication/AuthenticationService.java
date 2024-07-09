@@ -2,6 +2,7 @@ package com.quythuong.BakeryManagementSystem.Authentication;
 
 import com.quythuong.BakeryManagementSystem.AppUser.AppUser;
 import com.quythuong.BakeryManagementSystem.AppUser.AppUserRepository;
+import com.quythuong.BakeryManagementSystem.Cart.Cart;
 import com.quythuong.BakeryManagementSystem.JwtAuthentication.JwtService;
 import com.quythuong.BakeryManagementSystem.utils.Role;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,6 +32,7 @@ public class AuthenticationService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(request.getRole());
         user.setPhone(request.getPhone());
+        user.setCart(new Cart());
         if(!request.getEmail().isEmpty()) { // email is optional
             user.setEmail(request.getEmail());
         }
