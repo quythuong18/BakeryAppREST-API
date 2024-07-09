@@ -23,12 +23,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
     private final UserDetailServiceImp userDetailImp;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
-    public SecurityConfig(UserDetailServiceImp userDetailImp, JwtAuthenticationFilter jwtAuthenticationFilter, CustomAccessDeniedHandler customAccessDeniedHandler) {
+    public SecurityConfig(UserDetailServiceImp userDetailImp, JwtAuthenticationFilter jwtAuthenticationFilter) {
         this.userDetailImp = userDetailImp;
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-        this.customAccessDeniedHandler = customAccessDeniedHandler;
     }
 
     @Bean
@@ -40,19 +38,19 @@ public class SecurityConfig {
                         req->req.requestMatchers(
                                 "/auth/**",
                                 "/api-docs",
-                                "/swagger-ui/**"
+                                "/swagger-ui/**",
+                                "**/user/**"
                                 ).permitAll()
-                                .requestMatchers("**/orders/**").hasAuthority("ROLE_CUSTOMER")
-                                .requestMatchers("**/orders/**").hasAuthority("ROLE_CASHIER")
-                                .requestMatchers("**/orders/**").hasAuthority("ROLE_ADMIN")
-                                .requestMatchers(HttpMethod.GET,"**/products/**", "**/categories/**").permitAll()
-                                .requestMatchers(HttpMethod.POST,"**/products/**", "**/categories/**").hasAuthority("ROLE_ADMIN")
-                                .requestMatchers(HttpMethod.PUT,"**/products/**", "**/categories/**").hasAuthority("ROLE_ADMIN")
-                                .requestMatchers(HttpMethod.DELETE,"**/products/**", "**/categories/**").hasAuthority("ROLE_ADMIN")
+                                .requestMatchers("**/order/**").hasAuthority("ROLE_CUSTOMER")
+                                .requestMatchers("**/order/**").hasAuthority("ROLE_CASHIER")
+                                .requestMatchers("**/order/**").hasAuthority("ROLE_ADMIN")
+                                //.requestMatchers("**/user/**").hasAuthority("ROLE_ADMIN")
+                                .requestMatchers(HttpMethod.GET,"**/product/**", "**/category/**").permitAll()
+                                .requestMatchers(HttpMethod.POST,"**/product/**", "**/category/**").hasAuthority("ROLE_ADMIN")
+                                .requestMatchers(HttpMethod.PUT,"**/product/**", "**/category/**").hasAuthority("ROLE_ADMIN")
+                                .requestMatchers(HttpMethod.DELETE,"**/product/**", "**/category/**").hasAuthority("ROLE_ADMIN")
                                 .anyRequest().authenticated()
                 ).userDetailsService(userDetailImp)
-//                .exceptionHandling(e -> e.accessDeniedHandler(customAccessDeniedHandler)
-//                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

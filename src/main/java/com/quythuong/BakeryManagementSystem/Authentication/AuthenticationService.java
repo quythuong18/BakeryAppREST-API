@@ -24,7 +24,7 @@ public class AuthenticationService {
         this.authenticationManager = authenticationManager;
     }
 
-    public AuthenticationResponse registerAsACustomer(AppUser request) {
+    public AuthenticationResponse register(AppUser request) {
         AppUser user = new AppUser();
         user.setFullName(request.getFullName());
         user.setUsername(request.getUsername());
@@ -34,7 +34,6 @@ public class AuthenticationService {
         if(!request.getEmail().isEmpty()) { // email is optional
             user.setEmail(request.getEmail());
         }
-        user.setRole(Role.ROLE_CUSTOMER);
 
         // save new user to DB
         user = appUserRepository.save(user);
