@@ -5,7 +5,8 @@ This application provide an API to save data and manage a typical bakery system
 Spring Boot 3, Spring Data JPA, Spring Security 6, OpenAPI 3.0 Spring doc(Swagger UI), JWT, PostgreSQL
 
 ### Explore the REST API
-API was built with OpenAPI 3.0, so you can use Swagger UI to see full information, structures of the REST API
+API was built with OpenAPI 3.0, so you can use Swagger UI to see full information, structures of the REST API at `/swagger-ui/index.html`
+Then type "/api-docs" in the Explore input
 #### Authentication/Authorization
 | Method | Url            | Decription | Request body |
 | ------ |----------------|------------|--------------|
