@@ -12,7 +12,7 @@ public class AppUserController {
         this.appUserService = appUserService;
     }
 
-    @GetMapping
+    @GetMapping(path = "customers")
     List<AppUser> getAllCustomer() {
         return appUserService.getAllCustomer();
     }
