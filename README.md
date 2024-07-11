@@ -7,7 +7,7 @@ Spring Boot 3, Spring Data JPA, Spring Security 6, OpenAPI 3.0 Spring doc(Swagge
 ### Explore the REST API
 API was built with OpenAPI 3.0, so you can use Swagger UI to see full information, structures of the REST API at `/swagger-ui/index.html`
 Then type "/api-docs" in the Explore input
-### Let's a quick overview
+### Let's get a quick overview
 #### Authentication/Authorization
 | Method | Url            | Request body | Decription |
 | ------ |----------------|--------------|------------|
