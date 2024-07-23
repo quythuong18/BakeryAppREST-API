@@ -41,12 +41,11 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "**/user/**"
                                 ).permitAll()
-                                .requestMatchers("**/order/**").hasAuthority("ROLE_CUSTOMER")
-                                .requestMatchers("**/order/**").hasAuthority("ROLE_CASHIER")
-                                .requestMatchers("**/order/**").hasAuthority("ROLE_ADMIN")
+                                .requestMatchers("**/order/**").permitAll()
                                 //.requestMatchers("**/user/**").hasAuthority("ROLE_ADMIN")
                                 .requestMatchers(HttpMethod.GET,"**/product/**", "**/category/**").permitAll()
                                 .requestMatchers(HttpMethod.POST,"**/product/**", "**/category/**").hasAuthority("ROLE_ADMIN")
+                                .requestMatchers(HttpMethod.PATCH,"**/product/**", "**/category/**").hasAuthority("ROLE_ADMIN")
                                 .requestMatchers(HttpMethod.PUT,"**/product/**", "**/category/**").hasAuthority("ROLE_ADMIN")
                                 .requestMatchers(HttpMethod.DELETE,"**/product/**", "**/category/**").hasAuthority("ROLE_ADMIN")
                                 .anyRequest().authenticated()

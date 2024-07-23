@@ -4,7 +4,6 @@ import com.quythuong.BakeryManagementSystem.AppUser.AppUser;
 import com.quythuong.BakeryManagementSystem.AppUser.AppUserRepository;
 import com.quythuong.BakeryManagementSystem.Cart.Cart;
 import com.quythuong.BakeryManagementSystem.JwtAuthentication.JwtService;
-import com.quythuong.BakeryManagementSystem.utils.Role;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
