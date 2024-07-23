@@ -1,5 +1,6 @@
 package com.quythuong.BakeryManagementSystem.AppUser;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.quythuong.BakeryManagementSystem.Cart.Cart;
 import com.quythuong.BakeryManagementSystem.utils.Role;
 import jakarta.persistence.*;
@@ -47,6 +48,7 @@ public class AppUser implements UserDetails {
     @Column(name = "email")
     private String email;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "appUser") // the name in mappedBy is the name of Object that we declared in the Cart class
     private Cart cart;
 

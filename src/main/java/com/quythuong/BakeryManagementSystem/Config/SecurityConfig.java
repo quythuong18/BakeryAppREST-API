@@ -36,13 +36,14 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         req->req.requestMatchers(
-                                "/auth/**",
                                 "/api-docs",
                                 "/swagger-ui/**",
-                                "**/user/**"
+                                "**/user/**",
+                                "/auth/**"
                                 ).permitAll()
                                 .requestMatchers("**/order/**").permitAll()
-                                //.requestMatchers("**/user/**").hasAuthority("ROLE_ADMIN")
+
+                                //.requestMatchers(HttpMethod.POST,"/auth/**").permitAll()
                                 .requestMatchers(HttpMethod.GET,"**/product/**", "**/category/**").permitAll()
                                 .requestMatchers(HttpMethod.POST,"**/product/**", "**/category/**").hasAuthority("ROLE_ADMIN")
                                 .requestMatchers(HttpMethod.PATCH,"**/product/**", "**/category/**").hasAuthority("ROLE_ADMIN")

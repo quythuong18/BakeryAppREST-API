@@ -6,6 +6,7 @@ import com.quythuong.BakeryManagementSystem.Cart.Cart;
 import com.quythuong.BakeryManagementSystem.JwtAuthentication.JwtService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,7 @@ public class AuthenticationService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(request.getRole());
         user.setPhone(request.getPhone());
-        user.setCart(new Cart());
+        //user.setCart(new Cart());
         if(!request.getEmail().isEmpty()) { // email is optional
             user.setEmail(request.getEmail());
         }
