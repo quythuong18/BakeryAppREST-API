@@ -47,6 +47,7 @@ public class ProductService {
         product.setDescription(updateProduct.getDescription() != null ? updateProduct.getDescription() : product.getDescription());
         product.setPrice(updateProduct.getPrice() != null ? updateProduct.getPrice() : product.getPrice());
         product.setQuantity(updateProduct.getQuantity() != null ? updateProduct.getQuantity() : product.getQuantity());
+        product.setImgPath(updateProduct.getImgPath() != null ? updateProduct.getImgPath() : product.getImgPath());
 
         productRepository.save(product);
 //        return ResponseEntity.ok(product);

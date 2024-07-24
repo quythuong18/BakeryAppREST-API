@@ -9,12 +9,12 @@ API was built with OpenAPI 3.0, so you can use Swagger UI to see full informatio
 Then type "/api-docs" in the Explore input
 ### Let's get a quick overview
 #### Authentication/Authorization
-| Method | Url            | Request body | Decription |
-| ------ |----------------|--------------|------------|
-| POST   | /auth/register | JSON         | Register   |
-| POST   | /auth/login    | JSON         | Log in     |
+| Method | Url            | Request body | Description |
+| ------ |----------------|--------------|-------------|
+| POST   | /auth/register | JSON         | Register    |
+| POST   | /auth/login    | JSON         | Log in      |
 #### Category
-| Method | Url                                    | Decription                     | Request body |
+| Method | Url                                    | Description                     | Request body |
 |--------|----------------------------------------|--------------------------------|--------------|
 | GET    | /api/v1/category                       | Get all categories             |              |
 | GET    | /api/v1/category/{categoryId}/products | Get all products of a category |              |
@@ -23,23 +23,23 @@ Then type "/api-docs" in the Explore input
 | PATCH  | /api/v1/category/{categoryId}          | Update a category              | JSON         |
 
 #### Products
-| Method | Url                                   | Decription           | Request body |
+| Method | Url                                   | Description           | Request body |
 |--------|---------------------------------------|----------------------|--------------|
 | GET    | /api/v1/product                       | Get all products     |              |
 | POST   | /api/v1/product                       | Create a new product | JSON         |
 | DELETE | /api/v1/product/{productId}           | Delete a product     |              |
 | PATCH  | /api/v1/product/{productId}           | Update a product     | JSON         |
 #### AppUser
-| Method | Url                    | Decription        | Request body |
+| Method | Url                    | Description        | Request body |
 |--------|------------------------|-------------------|--------------|
 | GET    | /api/v1/user/customers | Get all customers |              |
 | GET    | /api/v1/user/{userId}  | Get a user by Id  |              |
 #### SaleOrder
-| Method | Url             | Decription     | Request body |
-|--------|-----------------|----------------|--------------|
-| POST   | /api/v1/order   | Place an order | JSON         |
+| Method | Url             | Description     | Request body |
+|--------|-----------------|-----------------|--------------|
+| POST   | /api/v1/order   | Place an order  | JSON         |
 #### Cart
-| Method | Url                   | Decription    | Request body |
-|--------|-----------------------|---------------|--------------|
-| PATCH  | /api/v1/cart/{cartId} | Update a cart | JSON         |
-### How to run and install project
+| Method | Url                   | Description    | Request body |
+|--------|-----------------------|----------------|--------------|
+| PATCH  | /api/v1/cart/{cartId} | Update a cart  | JSON         |
+### How to run project
